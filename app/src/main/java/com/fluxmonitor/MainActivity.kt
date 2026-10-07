@@ -55,10 +55,15 @@ fun Screen() {
             } catch (e: Exception) {
                 error = "Cours indisponibles : ${e.message}"
             }
-            try {
-                node = Api.fetchNode(ip.trim())
-            } catch (e: Exception) {
-                error = (error ?: "") + "\nNœud indisponible : ${e.message}"
+            if (ip.isBlank()) {
+                node = null
+                error = (error ?: "") + "\nSaisis l'IP de ton nœud dans les réglages."
+            } else {
+                try {
+                    node = Api.fetchNode(ip.trim())
+                } catch (e: Exception) {
+                    error = (error ?: "") + "\nNœud indisponible : ${e.message}"
+                }
             }
             loading = false
         }
