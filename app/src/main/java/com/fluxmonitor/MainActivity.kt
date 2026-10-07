@@ -68,7 +68,7 @@ class MainActivity : Activity() {
                 val info = Api.fetchNode(node)
                 val prices = Api.fetchPrices()
                 val height = try { Api.fetchHeight() } catch (e: Exception) { 0L }
-                val stratus = try { Api.fetchStratusCount() } catch (e: Exception) { 0 }
+                val stratus = Api.fetchStratusCount()
 
                 val costFlux = if (inFlux) cost else if (prices.fluxEur > 0) cost / prices.fluxEur else 0.0
                 val perDay = Calc.fluxPerDay(stratus)
