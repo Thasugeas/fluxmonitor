@@ -6,7 +6,7 @@ class Prefs(context: Context) {
     private val sp = context.getSharedPreferences("flux", Context.MODE_PRIVATE)
 
     var nodeIp: String
-        get() = sp.getString("ip", "111.111.111.111") ?: "111.111.111.111"
+        get() = sp.getString("ip", "") ?: ""
         set(v) = sp.edit().putString("ip", v).apply()
 
     var rewardPerBlock: Double
