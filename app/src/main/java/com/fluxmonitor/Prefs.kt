@@ -2,23 +2,24 @@ package com.fluxmonitor
 
 import android.content.Context
 
-class Prefs(context: Context) {
-    private val sp = context.getSharedPreferences("flux", Context.MODE_PRIVATE)
+object Prefs {
+    private const val FILE = "fluxmonitor"
 
-    var nodeIp: String
-        get() = sp.getString("ip", "") ?: ""
-        set(v) = sp.edit().putString("ip", v).apply()
+    fun getNode(c: Context): String =
+        c.getSharedPreferences(FILE, Context.MODE_PRIVATE).getString("node", "") ?: ""
 
-    var rewardPerBlock: Double
-        get() = sp.getFloat("reward", 22.5f).toDouble()
-        set(v) = sp.edit().putFloat("reward", v.toFloat()).apply()
+    fun setNode(c: Context, v: String) =
+        c.getSharedPreferences(FILE, Context.MODE_PRIVATE).edit().putString("node", v.trim()).apply()
 
-    var costValue: Double
-        get() = sp.getFloat("cost", 0f).toDouble()
-        set(v) = sp.edit().putFloat("cost", v.toFloat()).apply()
+    fun getCost(c: Context): Double =
+        c.getSharedPreferences(FILE, Context.MODE_PRIVATE).getFloat("cost", 0f).toDouble()
 
-    // true = coût en EUR, false = coût en FLUX
-    var costInEur: Boolean
-        get() = sp.getBoolean("costEur", true)
-        set(v) = sp.edit().putBoolean("costEur", v).apply()
+    fun setCost(c: Context, v: Double) =
+        c.getSharedPreferences(FILE, Context.MODE_PRIVATE).edit().putFloat("cost", v.toFloat()).apply()
+
+    fun isCostInFlux(c: Context): Boolean =
+        c.getSharedPreferences(FILE, Context.MODE_PRIVATE).getBoolean("costFlux", false)
+
+    fun setCostInFlux(c: Context, v: Boolean) =
+        c.getSharedPreferences(FILE, Context.MODE_PRIVATE).edit().putBoolean("costFlux", v).apply()
 }
