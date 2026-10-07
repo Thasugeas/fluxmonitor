@@ -61,7 +61,10 @@ object Api {
 
     fun fetchStratusCount(): Int {
         val root = JSONObject(get("https://api.runonflux.io/daemon/getfluxnodecount"))
-        return root.getJSONObject("data").optInt("stratus-enabled", 0)
+        val data = root.getJSONObject("data")
+        val n = data.optInt("stratus-enabled", -1)
+        if (n <= 0) throw Exception("Nombre de Stratus introuvable dans la réponse de l'API")
+        return n
     }
 
     fun fetchPrices(): Prices {
