@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun formatEta(days: Double): String {
         val minutes = (days * 24 * 60).toLong()
-        return if (minutes < 60) "$minutes min" else "%.1f h".format(minutes / 60.0)
+        return if (minutes < 60) "$minutes min" else "${Math.round(minutes / 60.0)} h"
     }
 
     private fun refresh() {
