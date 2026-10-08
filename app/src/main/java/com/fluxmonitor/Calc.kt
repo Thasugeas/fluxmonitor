@@ -3,7 +3,7 @@ package com.fluxmonitor
 object Calc {
     // À VÉRIFIER sur un explorateur FLUX (valeurs non confirmées)
     const val BLOCKS_PER_DAY = 2880.0          // ~30 s par bloc
-    const val STRATUS_REWARD_PER_BLOCK = 0.0   // <-- à renseigner
+    const val STRATUS_REWARD_PER_BLOCK = 18.0   // <-- à renseigner
 
     data class Earnings(val flux: Double, val eur: Double, val btc: Double)
 
