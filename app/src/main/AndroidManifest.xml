@@ -7,7 +7,7 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.FluxMonitor">
+        android:theme="@style/Theme.AppCompat.Light">
         <activity
             android:name=".MainActivity"
             android:exported="true">
